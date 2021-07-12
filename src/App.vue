@@ -5,9 +5,12 @@
 </template>
 
 <style lang="scss">
+* {
+  font-family: "Quicksand", sans-serif !important;
+}
 // Your variable overrides
-$blue: rgb(183, 0, 255);
-$secondary: rgb(255, 166, 0);
+$blue: rgb(255, 123, 0);
+$secondary: rgb(157, 255, 0);
 $bg-grey: grey;
 @import "~bootstrap/scss/bootstrap.scss";
 

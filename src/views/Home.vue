@@ -3,6 +3,14 @@
     <b-tabs pills content-class="mt-3">
       <b-tab title="All" active>
         <div>
+          <aside class="m-2">
+            <b-form-input
+              @keyup.enter="addTodo"
+              v-model="currentTodo"
+              placeholder="Write a todo.."
+            ></b-form-input>
+          </aside>
+
           <TodoList :todos="todos" />
         </div>
       </b-tab>
@@ -28,42 +36,42 @@ export default {
   components: { TodoList },
   computed: {
     activeTodos() {
-      return this.todos.filter((todo) => todo.isCompleted === true);
+      return this.todos.filter((todo) => todo.isCompleted === false);
     },
     completedTodos() {
-      return this.todos.filter((todo) => todo.isCompleted === false);
+      return this.todos.filter((todo) => todo.isCompleted === true);
     },
   },
   data() {
     return {
-      todos: [
-        {
-          title: "feed the cat",
-          id: 18,
-          isCompleted: true,
-        },
-        {
-          title: "wash my clothes",
-          id: 19,
-          isCompleted: false,
-        },
-        {
-          title: "go to the market",
-          id: 20,
-          isCompleted: true,
-        },
-        {
-          title: "take my bath",
-          id: 21,
-          isCompleted: false,
-        },
-        {
-          title: "go to school",
-          id: 22,
-          isCompleted: false,
-        },
-      ],
+      currentTodo: null,
+      todos: [],
     };
+  },
+  methods: {
+    /**
+     * Generates random numbers for our todo
+     */
+    generateRandInt() {
+      return Math.random().toString(16).substr(10);
+    },
+
+    /**
+     * Method to delete all todos
+     */
+    addTodo() {
+      if (!this.currentTodo || this.currentTodo === "") {
+        return;
+      }
+      const payload = {
+        isCompleted: false,
+        id: this.generateRandInt(),
+        title: this.currentTodo,
+      };
+      console.log("ADDING PAYLOAD-> ", payload);
+      this.todos.push(payload);
+      this.currentTodo = null;
+    },
   },
 };
 </script>
