@@ -1,14 +1,16 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
 <style lang="scss">
+// Your variable overrides
+$blue: rgb(183, 0, 255);
+$secondary: rgb(255, 166, 0);
+$bg-grey: grey;
+@import "~bootstrap/scss/bootstrap.scss";
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
