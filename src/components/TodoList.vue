@@ -5,8 +5,11 @@
         v-for="todo in todos"
         :key="todo.id"
         class="d-flex bg-grey text-dark-500 p-2 mb-2"
+        :class="{
+          'bg-danger text-white': todo.isCompleted === true,
+        }"
       >
-        <b-form-checkbox value="orange"
+        <b-form-checkbox @change="markAsCompleted(todo)"
           >&nbsp;
           <del v-if="todo.isCompleted"> {{ todo.title }}</del>
           <span v-else> {{ todo.title }}</span>
@@ -15,7 +18,7 @@
     </section>
 
     <section v-else class="m-5">
-        <h1 class="display-1">🤽</h1>
+      <h1 class="display-1">🤽</h1>
       <h5>Your todo list is empty</h5>
     </section>
   </div>
@@ -27,6 +30,14 @@ export default {
     todos: {
       type: Array,
       required: true,
+    },
+  },
+  methods: {
+    markAsCompleted(todo) {
+      if (!todo.id) {
+        return;
+      }
+      todo.isCompleted = !todo.isCompleted;
     },
   },
 };
