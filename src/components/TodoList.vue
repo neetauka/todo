@@ -9,7 +9,9 @@
           'bg-danger text-white': todo.isCompleted === true,
         }"
       >
-        <b-form-checkbox @change="markAsCompleted(todo)"
+        <b-form-checkbox
+          v-model="todo.isCompleted"
+          @change="markAsCompleted(todo)"
           >&nbsp;
           <del v-if="todo.isCompleted"> {{ todo.title }}</del>
           <span v-else> {{ todo.title }}</span>
@@ -39,6 +41,7 @@ export default {
       }
       todo.isCompleted = !todo.isCompleted;
     },
+    
   },
 };
 </script>

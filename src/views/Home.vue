@@ -23,6 +23,9 @@
         <div>
           <TodoList :todos="completedTodos" />
         </div>
+        <b-button @click.prevent="deleteAll" variant="danger">
+          Delete
+        </b-button>
       </b-tab>
     </b-tabs>
   </div>
@@ -56,7 +59,6 @@ export default {
       return Math.random().toString(16).substr(10);
     },
 
-
     /**
      * Method to delete all todos
      */
@@ -72,6 +74,21 @@ export default {
       console.log("ADDING PAYLOAD-> ", payload);
       this.todos.push(payload);
       this.currentTodo = null;
+    },
+
+    deleteAll() {
+      // Method 1
+      this.todos = this.todos.filter((t) => t.isCompleted == false);
+      
+      // Method 2
+      // this.todos.forEach((todo) => {
+      //   if (todo.isCompleted) {
+      //     const todoIndex = this.todos.findIndex((x) => x.id === todo.id);
+      //     if (todoIndex > -1) {
+      //       this.todos.splice(todoIndex, 1);
+      //     }
+      //   }
+      // });
     },
   },
 };
