@@ -3,11 +3,11 @@
     <b-tabs pills content-class="mt-3">
       <b-tab title="All" active>
         <div>
-          <aside class="m-2">
+          <aside class="m-5">
             <b-form-input
               @keyup.enter="addTodo"
               v-model="currentTodo"
-              placeholder="Write a todo.."
+              placeholder="Write a New Task."
             ></b-form-input>
           </aside>
 
@@ -63,7 +63,7 @@ export default {
      * Method to delete all todos
      */
     addTodo() {
-      if (!this.currentTodo || this.currentTodo === "") {
+      if (!this.currentTodo) {
         return;
       }
       const payload = {
@@ -79,7 +79,7 @@ export default {
     deleteAll() {
       // Method 1
       this.todos = this.todos.filter((t) => t.isCompleted == false);
-      
+
       // Method 2
       // this.todos.forEach((todo) => {
       //   if (todo.isCompleted) {

@@ -11,7 +11,6 @@
       >
         <b-form-checkbox
           v-model="todo.isCompleted"
-          @change="markAsCompleted(todo)"
           >&nbsp;
           <del v-if="todo.isCompleted"> {{ todo.title }}</del>
           <span v-else> {{ todo.title }}</span>
@@ -21,7 +20,7 @@
 
     <section v-else class="m-5">
       <h1 class="display-1">🤽</h1>
-      <h5>Your todo list is empty</h5>
+      <!-- <h5>Your todo list is empty</h5> -->
     </section>
   </div>
 </template>
@@ -35,12 +34,6 @@ export default {
     },
   },
   methods: {
-    markAsCompleted(todo) {
-      if (!todo.id) {
-        return;
-      }
-      todo.isCompleted = !todo.isCompleted;
-    },
     
   },
 };
